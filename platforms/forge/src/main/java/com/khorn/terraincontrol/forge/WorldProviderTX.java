@@ -10,7 +10,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,7 +35,6 @@ public class WorldProviderTX extends WorldProvider
 	public WorldProviderTX() { }
 	
     // A message to display to the user when they transfer to this dimension.
-	@Override
     public String getWelcomeMessage()
     {
 		WorldConfig worldConfig = GetWorldConfig();
@@ -43,7 +42,6 @@ public class WorldProviderTX extends WorldProvider
     }
 	
 	// A Message to display to the user when they transfer out of this dismension.
-	@Override
     public String getDepartMessage()
     {
 		WorldConfig worldConfig = GetWorldConfig();
@@ -311,7 +309,6 @@ public class WorldProviderTX extends WorldProvider
     
     // For 1.10.2 hasNoSky and hasSkyLight were the same thing, controlled via hasNoSky
     
-    @Override
     public boolean hasNoSky()
     {
     	WorldConfig worldConfig = GetWorldConfig();

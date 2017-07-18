@@ -393,7 +393,7 @@ public class TXBlockPortal
     public static void placeInExistingPortal(int dimensionId, BlockPos pos)
     {    
     	MinecraftServer mcServer = FMLCommonHandler.instance().getMinecraftServerInstance();
-    	WorldServer worldServerInstance = mcServer.worldServerForDimension(dimensionId);
+    	WorldServer worldServerInstance = mcServer.getWorld(dimensionId);
     	Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = null;
     	Teleporter _this = worldServerInstance.getDefaultTeleporter();
 		try {

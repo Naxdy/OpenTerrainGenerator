@@ -7,7 +7,7 @@ import com.khorn.terraincontrol.configuration.standard.PluginStandardValues;
 import com.khorn.terraincontrol.exception.InvalidConfigException;
 import com.khorn.terraincontrol.util.minecraftTypes.DefaultMaterial;
 
-import net.minecraft.server.v1_11_R1.Block;
+import net.minecraft.server.v1_12_R1.Block;
 
 import java.io.File;
 import java.util.ArrayList;

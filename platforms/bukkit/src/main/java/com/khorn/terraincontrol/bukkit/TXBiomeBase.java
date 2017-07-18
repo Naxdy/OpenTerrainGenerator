@@ -11,8 +11,8 @@ import com.khorn.terraincontrol.configuration.standard.PluginStandardValues;
 import com.khorn.terraincontrol.configuration.standard.WorldStandardValues;
 import com.khorn.terraincontrol.logging.LogMarker;
 import com.khorn.terraincontrol.util.helpers.StringHelper;
-import net.minecraft.server.v1_11_R1.BiomeBase;
-import net.minecraft.server.v1_11_R1.MinecraftKey;
+import net.minecraft.server.v1_12_R1.BiomeBase;
+import net.minecraft.server.v1_12_R1.MinecraftKey;
 import org.bukkit.block.Biome;
 
 import java.util.List;
@@ -168,13 +168,13 @@ public class TXBiomeBase extends BiomeBase
         }
 
         this.r = ((BukkitMaterialData) biomeConfig.surfaceBlock).internalBlock();
-        this.s = ((BukkitMaterialData) biomeConfig.groundBlock).internalBlock();
+        this.q = ((BukkitMaterialData) biomeConfig.groundBlock).internalBlock();
 
         // Mob spawning
-        addMobs(this.u, biomeConfig.spawnMonsters);
-        addMobs(this.v, biomeConfig.spawnCreatures);
+        addMobs(this.v, biomeConfig.spawnMonsters);
+        addMobs(this.u, biomeConfig.spawnCreatures);
         addMobs(this.w, biomeConfig.spawnWaterCreatures);
-        addMobs(this.x, biomeConfig.spawnAmbientCreatures);
+        addMobs(this.t, biomeConfig.spawnAmbientCreatures);
     }
 
     // Adds the mobs to the internal list.

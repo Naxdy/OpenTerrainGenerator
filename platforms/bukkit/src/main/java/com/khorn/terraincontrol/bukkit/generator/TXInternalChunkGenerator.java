@@ -7,12 +7,12 @@ import com.khorn.terraincontrol.bukkit.BukkitWorld;
 import com.khorn.terraincontrol.configuration.WorldConfig;
 import com.khorn.terraincontrol.util.minecraftTypes.StructureNames;
 
-import net.minecraft.server.v1_11_R1.BiomeBase;
-import net.minecraft.server.v1_11_R1.BlockPosition;
-import net.minecraft.server.v1_11_R1.EnumCreatureType;
-import net.minecraft.server.v1_11_R1.World;
+import net.minecraft.server.v1_12_R1.BiomeBase;
+import net.minecraft.server.v1_12_R1.BlockPosition;
+import net.minecraft.server.v1_12_R1.EnumCreatureType;
+import net.minecraft.server.v1_12_R1.World;
 
-import org.bukkit.craftbukkit.v1_11_R1.generator.CustomChunkGenerator;
+import org.bukkit.craftbukkit.v1_12_R1.generator.CustomChunkGenerator;
 import org.bukkit.generator.ChunkGenerator;
 
 public class TXInternalChunkGenerator extends CustomChunkGenerator

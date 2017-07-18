@@ -245,7 +245,7 @@ public class Cartographer
 		if(destinationCoordinateCache == null)
 		{
 	    	MinecraftServer mcServer = FMLCommonHandler.instance().getMinecraftServerInstance();
-	    	WorldServer worldserver1 = mcServer.worldServerForDimension(0);
+	    	WorldServer worldserver1 = mcServer.getWorld(0);
 			try {
 				Field[] fields = worldserver1.getDefaultTeleporter().getClass().getDeclaredFields();
 				for(Field field : fields)

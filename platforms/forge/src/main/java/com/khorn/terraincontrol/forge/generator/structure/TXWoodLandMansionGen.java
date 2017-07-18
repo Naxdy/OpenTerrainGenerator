@@ -91,8 +91,9 @@ public class TXWoodLandMansionGen extends MapGenStructure
 
         return false;
     }    
-    
-    public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean findUnexplored)
+
+    @Override
+    public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
     {
         this.world = worldIn;
         BiomeProvider biomeprovider = worldIn.getBiomeProvider();              

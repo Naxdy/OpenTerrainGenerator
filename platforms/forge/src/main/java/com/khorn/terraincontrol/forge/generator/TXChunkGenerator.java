@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class TXChunkGenerator implements IChunkGenerator
 {
@@ -54,7 +54,7 @@ public class TXChunkGenerator implements IChunkGenerator
 
     private ForgeChunkBuffer chunkBuffer;
     @Override
-    public Chunk provideChunk(int chunkX, int chunkZ)
+    public Chunk generateChunk(int chunkX, int chunkZ)
     {
     	ChunkCoordinate chunkCoord = ChunkCoordinate.fromChunkCoords(chunkX, chunkZ);
     	
@@ -96,8 +96,8 @@ public class TXChunkGenerator implements IChunkGenerator
     {
         byte[] chunkBiomeArray = chunk.getBiomeArray();
         ConfigProvider configProvider = this.world.getConfigs();
-        this.biomeIntArray = this.world.getBiomeGenerator().getBiomes(this.biomeIntArray, chunk.xPosition * CHUNK_X_SIZE,
-                chunk.zPosition * CHUNK_Z_SIZE, CHUNK_X_SIZE, CHUNK_Z_SIZE, OutputType.DEFAULT_FOR_WORLD);
+        this.biomeIntArray = this.world.getBiomeGenerator().getBiomes(this.biomeIntArray, chunk.x * CHUNK_X_SIZE,
+                chunk.z * CHUNK_Z_SIZE, CHUNK_X_SIZE, CHUNK_Z_SIZE, OutputType.DEFAULT_FOR_WORLD);
 
         for (int i = 0; i < chunkBiomeArray.length; i++)
         {
@@ -154,6 +154,16 @@ public class TXChunkGenerator implements IChunkGenerator
     }
 
     @Override
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
+        // Gets the nearest stronghold
+        if (("Stronghold".equals(structureName)) && (this.world.strongholdGen != null))
+        {
+            return this.world.strongholdGen.getNearestStructurePos(worldIn, position, findUnexplored);
+        }
+        return null;
+    }
+
+    @Override
     public void recreateStructures(Chunk chunkIn, int chunkX, int chunkZ)
     {
         // recreateStructures
@@ -190,19 +200,13 @@ public class TXChunkGenerator implements IChunkGenerator
     }
 
     @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
+        return false;
+    }
+
+    @Override
     public boolean generateStructures(Chunk chunkIn, int x, int z)
     {
         return false;
-    } 	
-
-    @Override
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos blockPos, boolean p_180513_4_)
-    {
-        // Gets the nearest stronghold
-        if (("Stronghold".equals(structureName)) && (this.world.strongholdGen != null))
-        {
-            return this.world.strongholdGen.getClosestStrongholdPos(worldIn, blockPos, p_180513_4_);
-        }
-        return null;
     }
 }

@@ -51,13 +51,13 @@ public class TXTeleporter
             _this.world.profiler.startSection("changeDimension");
             MinecraftServer minecraftserver = _this.getServer();
             int i = _this.dimension;
-            WorldServer worldserver = minecraftserver.worldServerForDimension(i);
-            WorldServer worldserver1 = minecraftserver.worldServerForDimension(dimensionIn);
+            WorldServer worldserver = minecraftserver.getWorld(i);
+            WorldServer worldserver1 = minecraftserver.getWorld(dimensionIn);
             _this.dimension = dimensionIn;
 
             if (i == 1 && dimensionIn == 1)
             {
-                worldserver1 = minecraftserver.worldServerForDimension(0);
+                worldserver1 = minecraftserver.getWorld(0);
                 _this.dimension = 0;
             }
 
@@ -153,15 +153,15 @@ public class TXTeleporter
     
     public static void changePlayerDimension(EntityPlayerMP player, int dimensionIn, PlayerList _this, boolean createPortal)
     {    	    	
-        transferPlayerToDimension(player, dimensionIn, _this.getServerInstance().worldServerForDimension(dimensionIn).getDefaultTeleporter(), _this, createPortal);
+        transferPlayerToDimension(player, dimensionIn, _this.getServerInstance().getWorld(dimensionIn).getDefaultTeleporter(), _this, createPortal);
     }
 
     public static void transferPlayerToDimension(EntityPlayerMP player, int dimensionIn, net.minecraft.world.Teleporter teleporter, PlayerList _this, boolean createPortal)
     {
         int i = player.dimension;
-        WorldServer worldserver = _this.getServerInstance().worldServerForDimension(player.dimension);
+        WorldServer worldserver = _this.getServerInstance().getWorld(player.dimension);
         player.dimension = dimensionIn;
-        WorldServer worldserver1 = _this.getServerInstance().worldServerForDimension(player.dimension);
+        WorldServer worldserver1 = _this.getServerInstance().getWorld(player.dimension);
         player.connection.sendPacket(new SPacketRespawn(player.dimension, worldserver1.getDifficulty(), worldserver1.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
         _this.updatePermissionLevel(player);
         worldserver.removeEntityDangerously(player);
@@ -249,7 +249,7 @@ public class TXTeleporter
 		Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = null;
 
 		MinecraftServer mcServer = FMLCommonHandler.instance().getMinecraftServerInstance();
-    	WorldServer worldserver1 = mcServer.worldServerForDimension(dimensionId);
+    	WorldServer worldserver1 = mcServer.getWorld(dimensionId);
 		try {
 			Field[] fields = worldserver1.getDefaultTeleporter().getClass().getDeclaredFields();
 			for(Field field : fields)
@@ -337,8 +337,8 @@ public class TXTeleporter
             boolean flag1 = blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
             double d2 = blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double)blockpattern$patternhelper.getFrontTopLeft().getZ() : (double)blockpattern$patternhelper.getFrontTopLeft().getX();
             
-            double xCoord = entityIn.getLastPortalVec() == null ? 0.0 : entityIn.getLastPortalVec().xCoord;
-            double yCoord = entityIn.getLastPortalVec() == null ? 2.0 : entityIn.getLastPortalVec().yCoord;
+            double xCoord = entityIn.getLastPortalVec() == null ? 0.0 : entityIn.getLastPortalVec().x;
+            double yCoord = entityIn.getLastPortalVec() == null ? 2.0 : entityIn.getLastPortalVec().y;
             double d6 = (double)(blockpattern$patternhelper.getFrontTopLeft().getY() + 1) - yCoord * (double)blockpattern$patternhelper.getHeight();
 
             if (flag1)
