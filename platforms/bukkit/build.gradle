@@ -5,7 +5,7 @@ apply plugin: 'java'
 // Project properties
 archivesBaseName = "openterraingenerator-bukkit"
 description = "Open Terrain Generator for Bukkit"
-ext.bukkitVersion = "1.12-R0.1-SNAPSHOT"
+ext.bukkitVersion = "1.12.1-R0.1-SNAPSHOT"
 
 repositories
 {

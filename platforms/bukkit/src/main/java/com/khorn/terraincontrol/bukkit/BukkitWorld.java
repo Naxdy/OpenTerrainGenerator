@@ -957,7 +957,7 @@ public class BukkitWorld implements LocalWorld
         TileEntity tileEntity = world.getTileEntity(new BlockPosition(x, y, z));
         if (tileEntity != null)
         {
-            tileEntity.a(nmsTag); // tileEntity.load
+            tileEntity.load(nmsTag); // tileEntity.load
         } else {
             TerrainControl.log(LogMarker.DEBUG, "Skipping tile entity with id {}, cannot be placed at {},{},{} on id {}",
                     nmsTag.getString("id"), x, y, z, getMaterial(x, y, z));
